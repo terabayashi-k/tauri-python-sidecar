@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri + Python Sidecar</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <header>
+        <h1>Tauri + Python Sidecar Demo</h1>
+        <p class="sub">Python (FastAPI) の Web サーバーを sidecar として起動・停止し、WebView から HTTP で通信します。</p>
+      </header>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>サーバー制御</h2>
+          <span id="status-badge" class="badge stopped">stopped</span>
+        </div>
+        <div class="row">
+          <label for="port-input">Port</label>
+          <input id="port-input" type="number" min="0" max="65535" value="8765" />
+          <span class="hint">0 = 自動割り当て</span>
+        </div>
+        <div class="row">
+          <button id="start-btn" class="primary">Start</button>
+          <button id="stop-btn">Stop</button>
+          <button id="restart-btn">Restart</button>
+        </div>
+        <dl class="kv">
+          <dt>PID (sidecar)</dt><dd id="pid">-</dd>
+          <dt>URL</dt><dd id="url">-</dd>
+        </dl>
+        <p id="control-error" class="error"></p>
+      </section>
+
+      <section class="card">
+        <h2>API 呼び出し</h2>
+        <div class="row">
+          <button data-api="health" class="api-btn">GET /api/health</button>
+          <button data-api="info" class="api-btn">GET /api/info</button>
+          <button data-api="counter" class="api-btn">GET /api/counter</button>
+          <button data-api="increment" class="api-btn">POST /api/counter/increment</button>
+        </div>
+        <form id="echo-form" class="row">
+          <input id="echo-input" placeholder="メッセージを入力..." value="Hello from Tauri!" />
+          <button type="submit" class="api-btn">POST /api/echo</button>
+        </form>
+        <div class="response-head">
+          <span>Response</span>
+          <span id="response-meta" class="hint"></span>
+        </div>
+        <pre id="response" class="response">(まだリクエストしていません)</pre>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>サーバーログ</h2>
+          <button id="clear-log-btn" class="small">Clear</button>
+        </div>
+        <pre id="log" class="log"></pre>
+      </section>
+    </main>
+  </body>
+</html>

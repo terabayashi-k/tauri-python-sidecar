@@ -1,0 +1,7 @@
+# 開発に必要なツール (`mise install` でまとめてインストール)
+# Python 本体は uv が python-server/.python-version に従って管理する
+[tools]
+node = "26.12.1"
+pnpm = "12.14.0"
+uv = "0.13.4"
+rust = "1.99.0"

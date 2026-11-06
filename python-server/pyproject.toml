@@ -1,0 +1,25 @@
+[project]
+name = "python-server"
+version = "0.1.0"
+description = "Web server bundled as a Tauri sidecar (FastAPI + uvicorn)"
+readme = "README.md"
+authors = [
+    { name = "terabayashi-k", email = "terabayashi-k@nippon-rad.co.jp" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.162.0",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+python-server = "python_server:main"
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.3",
+]
